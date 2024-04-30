@@ -25,8 +25,8 @@ jobs:
          sudo apt-get install git wget curl
          cd $GITHUB_WORKSPACE/packboot
          wget -O mk https://raw.githubusercontent.com/jiamils/KernelSU_Action/main/magiskboot
-         wget -O kpimg https://github.com/bmax121/KernelPatch/releases/download/${{ KP_VERSIOLN }}/kpimg-linux
-         wget -O kptools https://github.com/bmax121/KernelPatch/releases/download/${{ KP_VERSIOLN }}/kptools-linux
+         wget -O kpimg https://github.com/bmax121/KernelPatch/releases/download/${{ KP_VERSION }}/kpimg-linux
+         wget -O kptools https://github.com/bmax121/KernelPatch/releases/download/${{ KP_VERSION }}/kptools-linux
          chmod a+x *
          wget ${{ BOOT_URL }}
          ./mk unpack boot.img
