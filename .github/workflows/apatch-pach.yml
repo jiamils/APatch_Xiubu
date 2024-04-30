@@ -16,7 +16,7 @@ jobs:
     - name: Settings Config
       run: |
         CONFIG_ENV=$(cat config.env | grep -w "CONFIG_ENV" | head -n 1 | cut -d "=" -f 2)
-        echo "KP_VERSIOLN=$(cat $CONFIG_ENV | grep -w "KP_VERSIOLN" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
+        echo "KP_VERSION=$(cat $CONFIG_ENV | grep -w "KP_VERSION" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
         echo "BOOT_URL=$(cat $CONFIG_ENV | grep -w "BOOT_URL" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
         echo "SUPER_KEY=$(cat $CONFIG_ENV | grep -w "SUPER_KEY" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
         mkdir -p $GITHUB_WORKSPACE/packboot
