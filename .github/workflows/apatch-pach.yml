@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 jobs:
   build:
-    runs-on: ubuntu-latest
     name: Setup
+    runs-on: ubuntu-latest
     env:
        CCACHE_COMPILERCHECK: "%compiler% -dumpmachine; %compiler% -dumpversion"
        CCACHE_NOHASHDIR: "true"
