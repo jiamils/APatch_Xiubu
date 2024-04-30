@@ -24,23 +24,23 @@
           
      - name: Pack Boot
        run: |
-       sudo apt-get update
-       sudo apt-get install wget curl
-       cd $GITHUB_WORKSPACE/packboot
-       wget -O mk https://raw.githubusercontent.com/jiamils/KernelSU_Action/main/magiskboot
-       wget -O kpimg https://github.com/bmax121/KernelPatch/releases/download/${{ KP_VERSIOLN }}/kpimg-linux
-       wget -O kptools https://github.com/bmax121/KernelPatch/releases/download/${{ KP_VERSIOLN }}/kptools-linux
-       chmod a+x *
-       wget ${{ BOOT_URL }}
-       ./mk unpack boot.img
-       mv kernel kernel-b
-       ./kptools -p -i kernel-b -s "${{ SUPER_KEY }}" -k kpimg -o kernel
-       ./mk repack boot.img
+        sudo apt-get update
+        sudo apt-get install wget curl
+        cd $GITHUB_WORKSPACE/packboot
+        wget -O mk https://raw.githubusercontent.com/jiamils/KernelSU_Action/main/magiskboot
+        wget -O kpimg https://github.com/bmax121/KernelPatch/releases/download/${{ KP_VERSIOLN }}/kpimg-linux
+        wget -O kptools https://github.com/bmax121/KernelPatch/releases/download/${{ KP_VERSIOLN }}/kptools-linux
+        chmod a+x *
+        wget ${{ BOOT_URL }}
+        ./mk unpack boot.img
+        mv kernel kernel-b
+        ./kptools -p -i kernel-b -s "${{ SUPER_KEY }}" -k kpimg -o kernel
+        ./mk repack boot.img
        
 
      - name: Upload the boot
        uses: actions/upload-artifact@v4
        with:
-       name: new-boot.img
-       path: |
+        name: new-boot.img
+        path: |
           packboot/new-boot.img
