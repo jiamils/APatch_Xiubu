@@ -10,7 +10,6 @@ jobs:
        CCACHE_COMPILERCHECK: "%compiler% -dumpmachine; %compiler% -dumpversion"
        CCACHE_NOHASHDIR: "true"
        CCACHE_HARDLINK: "true"
-      
     steps:
     - uses: actions/checkout@v4
     - name: Settings Config
@@ -21,18 +20,18 @@ jobs:
         echo "SUPER_KEY=$(cat $CONFIG_ENV | grep -w "SUPER_KEY" | head -n 1 | cut -d "=" -f 2)" >> $GITHUB_ENV
         mkdir -p $GITHUB_WORKSPACE/packboot
         sudo apt-get update
-         sudo apt-get upgrade
-         sudo apt-get install git wget curl
-         cd $GITHUB_WORKSPACE/packboot
-         wget -O mk https://raw.githubusercontent.com/jiamils/KernelSU_Action/main/magiskboot
-         wget -O kpimg https://github.com/bmax121/KernelPatch/releases/download/${{ KP_VERSION }}/kpimg-linux
-         wget -O kptools https://github.com/bmax121/KernelPatch/releases/download/${{ KP_VERSION }}/kptools-linux
-         chmod a+x *
-         wget ${{ BOOT_URL }}
-         ./mk unpack boot.img
-         mv kernel kernel-b
-         ./kptools -p -i kernel-b -s "${{ SUPER_KEY }}" -k kpimg -o kernel
-         ./mk repack boot.img
+        sudo apt-get upgrade
+        sudo apt-get install git wget curl
+        cd $GITHUB_WORKSPACE/packboot
+        wget -O mk https://raw.githubusercontent.com/jiamils/KernelSU_Action/main/magiskboot
+        wget -O kpimg https://github.com/bmax121/KernelPatch/releases/download/${{ KP_VERSION }}/kpimg-linux
+        wget -O kptools https://github.com/bmax121/KernelPatch/releases/download/${{ KP_VERSION }}/kptools-linux
+        chmod a+x *
+        wget ${{ BOOT_URL }}
+        ./mk unpack boot.img
+        mv kernel kernel-b
+        ./kptools -p -i kernel-b -s "${{ SUPER_KEY }}" -k kpimg -o kernel
+        ./mk repack boot.img
 
     - name: Upload the boot
       uses: actions/upload-artifact@v4
